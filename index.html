@@ -1,0 +1,2595 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SovereignCFO | المنصة المؤسسية للإدارة المالية والمحاسبية والفوترة الإلكترونية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      accent-color: #d4af37;
+      --bg-abyss: #060a12;
+      --bg-obsidian: #0b111e;
+      --bg-card: rgba(15, 23, 42, 0.82);
+      --bg-card-elevated: rgba(22, 33, 58, 0.92);
+      --bg-glass: rgba(11, 17, 30, 0.88);
+      --border-subtle: rgba(148, 163, 184, 0.14);
+      --border-gold: rgba(212, 175, 55, 0.38);
+      --border-emerald: rgba(16, 185, 129, 0.35);
+      --gold-primary: #eab308;
+      --gold-bright: #fde047;
+      --gold-muted: rgba(234, 179, 8, 0.14);
+      --emerald-primary: #10b981;
+      --emerald-bright: #34d399;
+      --emerald-muted: rgba(16, 185, 129, 0.14);
+      --cyan-primary: #0ea5e9;
+      --cyan-bright: #38bdf8;
+      --cyan-muted: rgba(14, 165, 233, 0.14);
+      --rose-primary: #f43f5e;
+      --rose-bright: #fb7185;
+      --rose-muted: rgba(244, 63, 94, 0.14);
+      --amber-primary: #f59e0b;
+      --violet-primary: #8b5cf6;
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --font-sans: 'IBM Plex Sans Arabic', 'Cairo', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --scrollbar-thumb: rgba(212, 175, 55, 0.42);
+      --scrollbar-track: rgba(11, 17, 30, 0.9);
+      --shadow-exec: 0 14px 34px -8px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(148, 163, 184, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    ::selection {
+      background: rgba(234, 179, 8, 0.28);
+      color: #fef08a;
+    }
+
+    html, body {
+      min-height: 100vh;
+      background-color: var(--bg-abyss);
+      background-image:
+        radial-gradient(circle at 12% 8%, rgba(234, 179, 8, 0.08) 0%, transparent 38%),
+        radial-gradient(circle at 88% 12%, rgba(16, 185, 129, 0.07) 0%, transparent 40%),
+        radial-gradient(circle at 50% 95%, rgba(14, 165, 233, 0.06) 0%, transparent 45%),
+        linear-gradient(180deg, #050811 0%, #090f1d 50%, #060a12 100%);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.5;
+      overflow-x: hidden;
+      scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+      scrollbar-width: thin;
+    }
+
+    .scroller {
+      scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+      scrollbar-width: thin;
+    }
+
+    @supports not (scrollbar-color: auto) {
+      .scroller::-webkit-scrollbar,
+      body::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      .scroller::-webkit-scrollbar-thumb,
+      body::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb);
+        border-radius: 4px;
+      }
+      .scroller::-webkit-scrollbar-track,
+      body::-webkit-scrollbar-track {
+        background: var(--scrollbar-track);
+      }
+    }
+
+    /* Ambient subtle grid */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(148, 163, 184, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(148, 163, 184, 0.03) 1px, transparent 1px);
+      background-size: 36px 36px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ================= ULTRA-COMPACT EXECUTIVE TOPBAR ================= */
+    .exec-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 13, 24, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+    }
+
+    .topbar-inner {
+      max-width: 1560px;
+      margin: 0 auto;
+      padding: 6px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .brand-cluster {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .brand-crest {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #facc15 0%, #ca8a04 55%, #854d0e 100%);
+      display: grid;
+      place-items: center;
+      color: #060a12;
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 15px;
+      box-shadow: 0 0 16px rgba(234, 179, 8, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+      flex-shrink: 0;
+      user-select: none;
+    }
+
+    .brand-titles {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .brand-name {
+      font-size: 14.5px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: #ffffff;
+      background: linear-gradient(90deg, #ffffff 0%, #fef08a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .ifrs-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      background: rgba(16, 185, 129, 0.14);
+      color: var(--emerald-bright);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      white-space: nowrap;
+      direction: ltr;
+    }
+
+    .ifrs-pill .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--emerald-bright);
+      box-shadow: 0 0 8px var(--emerald-bright);
+    }
+
+    .brand-sub {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* Entity Switcher Compact Segmented Control */
+    .entity-bar {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      background: rgba(15, 23, 42, 0.9);
+      padding: 3px;
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+      flex-wrap: wrap;
+    }
+
+    .entity-btn {
+      appearance: none;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    .entity-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .entity-btn.active {
+      background: linear-gradient(135deg, rgba(234, 179, 8, 0.22) 0%, rgba(202, 138, 4, 0.12) 100%);
+      color: var(--gold-bright);
+      border: 1px solid rgba(234, 179, 8, 0.45);
+      box-shadow: 0 2px 10px rgba(234, 179, 8, 0.15);
+    }
+
+    .entity-code {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      opacity: 0.75;
+      padding: 1px 4px;
+      border-radius: 3px;
+      background: rgba(0, 0, 0, 0.3);
+      direction: ltr;
+    }
+
+    /* Right Action Cluster */
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .action-btn {
+      appearance: none;
+      border: 1px solid var(--border-subtle);
+      background: rgba(30, 41, 59, 0.75);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 7px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .action-btn:hover {
+      border-color: rgba(234, 179, 8, 0.5);
+      background: rgba(30, 41, 59, 0.95);
+      transform: translateY(-1px);
+    }
+
+    .action-btn.gold {
+      background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
+      color: #060a12;
+      border-color: #fde047;
+      font-weight: 700;
+    }
+
+    .action-btn.gold:hover {
+      background: linear-gradient(135deg, #fde047 0%, #eab308 100%);
+      box-shadow: 0 0 14px rgba(234, 179, 8, 0.4);
+    }
+
+    /* ================= NAVIGATION SUB-BAR (ZERO SCROLLBARS!) ================= */
+    .subnav-bar {
+      background: rgba(11, 17, 30, 0.85);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .subnav-inner {
+      max-width: 1560px;
+      margin: 0 auto;
+      padding: 5px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav-tabs {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .nav-tab {
+      appearance: none;
+      border: 1px solid transparent;
+      background: rgba(30, 41, 59, 0.45);
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .nav-tab:hover {
+      color: #ffffff;
+      background: rgba(51, 65, 85, 0.6);
+    }
+
+    .nav-tab.active {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--emerald-bright);
+      border-color: rgba(16, 185, 129, 0.45);
+      box-shadow: 0 2px 10px rgba(16, 185, 129, 0.12);
+    }
+
+    .nav-tab .badge-count {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 1px 5px;
+      border-radius: 4px;
+      background: rgba(15, 23, 42, 0.75);
+      color: var(--text-secondary);
+    }
+
+    .nav-tab.active .badge-count {
+      background: rgba(16, 185, 129, 0.25);
+      color: #ffffff;
+    }
+
+    .telemetry-strip {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+
+    .telemetry-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .telemetry-val {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* ================= MAIN WORKSPACE CONTAINER ================= */
+    .workspace {
+      position: relative;
+      z-index: 1;
+      max-width: 1560px;
+      margin: 0 auto;
+      padding: 14px 18px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* ================= SYMMETRICAL 4-CARD KPI STRIP ================= */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .kpi-card {
+      background: linear-gradient(160deg, rgba(19, 29, 51, 0.9) 0%, rgba(11, 18, 34, 0.94) 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 12px 14px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-exec);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(234, 179, 8, 0.35);
+    }
+
+    .kpi-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      inset-inline-start: 0;
+      width: 100%;
+      height: 2px;
+    }
+
+    .kpi-card.gold-accent::after { background: linear-gradient(90deg, #eab308, transparent); }
+    .kpi-card.emerald-accent::after { background: linear-gradient(90deg, #10b981, transparent); }
+    .kpi-card.cyan-accent::after { background: linear-gradient(90deg, #0ea5e9, transparent); }
+    .kpi-card.violet-accent::after { background: linear-gradient(90deg, #8b5cf6, transparent); }
+
+    .kpi-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .kpi-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .kpi-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 5px;
+      white-space: nowrap;
+      direction: ltr;
+    }
+
+    .kpi-tag.up {
+      background: rgba(16, 185, 129, 0.16);
+      color: var(--emerald-bright);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+    }
+
+    .kpi-tag.gold {
+      background: rgba(234, 179, 8, 0.16);
+      color: var(--gold-bright);
+      border: 1px solid rgba(234, 179, 8, 0.35);
+    }
+
+    .kpi-mid {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .kpi-value {
+      font-family: var(--font-mono);
+      font-size: 21px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      direction: ltr;
+      display: inline-block;
+    }
+
+    .kpi-unit {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gold-primary);
+      margin-inline-start: 4px;
+    }
+
+    .kpi-spark {
+      width: 78px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+
+    .kpi-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(148, 163, 184, 0.08);
+      padding-top: 6px;
+    }
+
+    .kpi-formula {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-secondary);
+      direction: ltr;
+    }
+
+    /* ================= MODULE SECTIONS & PANELS ================= */
+    .module-section {
+      display: none;
+      flex-direction: column;
+      gap: 14px;
+      animation: fadeIn 0.22s ease;
+    }
+
+    .module-section.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* High-density 2-column & 3-column executive grids */
+    .exec-row-2 {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 14px;
+    }
+
+    .exec-row-equal {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .exec-row-3 {
+      display: grid;
+      grid-template-columns: 1.15fr 1.15fr 0.9fr;
+      gap: 14px;
+    }
+
+    .panel-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 14px 16px;
+      box-shadow: var(--shadow-exec);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+      padding-bottom: 9px;
+      flex-wrap: wrap;
+    }
+
+    .panel-title-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .panel-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+      background: rgba(234, 179, 8, 0.14);
+      color: var(--gold-bright);
+      border: 1px solid rgba(234, 179, 8, 0.3);
+      flex-shrink: 0;
+    }
+
+    .panel-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .panel-subtitle {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .panel-badge {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(14, 165, 233, 0.14);
+      color: var(--cyan-bright);
+      border: 1px solid rgba(14, 165, 233, 0.3);
+      direction: ltr;
+    }
+
+    /* Canvas Wrappers */
+    .canvas-box {
+      position: relative;
+      width: 100%;
+      height: 230px;
+      background: rgba(6, 10, 18, 0.55);
+      border: 1px solid rgba(148, 163, 184, 0.08);
+      border-radius: 9px;
+      padding: 6px;
+    }
+
+    .canvas-box canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .chart-tooltip {
+      position: absolute;
+      pointer-events: none;
+      background: rgba(6, 10, 18, 0.95);
+      border: 1px solid var(--gold-primary);
+      border-radius: 7px;
+      padding: 6px 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+      opacity: 0;
+      transition: opacity 0.12s ease;
+      z-index: 20;
+      direction: ltr;
+      white-space: nowrap;
+    }
+
+    /* What-If Sliders Grid */
+    .sliders-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .slider-item {
+      background: rgba(11, 17, 30, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      border-radius: 8px;
+      padding: 9px 11px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .slider-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .slider-val {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--gold-bright);
+      direction: ltr;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.2);
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* Capital Structure & Ratios List */
+    .ratios-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .ratio-box {
+      background: rgba(11, 17, 30, 0.65);
+      border: 1px solid rgba(148, 163, 184, 0.1);
+      border-radius: 8px;
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .ratio-name {
+      font-size: 11.5px;
+      color: var(--text-secondary);
+    }
+
+    .ratio-num {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--emerald-bright);
+      direction: ltr;
+    }
+
+    /* ================= TABLES (GL, TRIAL BALANCE, IFRS) ================= */
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: 9px;
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      background: rgba(6, 10, 18, 0.55);
+    }
+
+    table.fin-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    table.fin-table th {
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-secondary);
+      font-weight: 700;
+      text-align: start;
+      padding: 9px 12px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+      white-space: nowrap;
+      font-size: 11.5px;
+    }
+
+    table.fin-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.07);
+      color: var(--text-primary);
+      vertical-align: middle;
+    }
+
+    table.fin-table tr:hover td {
+      background: rgba(234, 179, 8, 0.04);
+    }
+
+    table.fin-table tr.total-row td {
+      background: rgba(234, 179, 8, 0.1);
+      font-weight: 800;
+      border-top: 1px solid rgba(234, 179, 8, 0.35);
+      border-bottom: none;
+      color: var(--gold-bright);
+    }
+
+    table.fin-table tr.section-row td {
+      background: rgba(30, 41, 59, 0.55);
+      font-weight: 700;
+      color: var(--cyan-bright);
+      font-size: 11.5px;
+    }
+
+    .mono-num {
+      font-family: var(--font-mono);
+      direction: ltr;
+      display: inline-block;
+      font-weight: 600;
+    }
+
+    .dr-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--emerald-bright);
+      background: rgba(16, 185, 129, 0.12);
+      padding: 2px 6px;
+      border-radius: 4px;
+      direction: ltr;
+      display: inline-block;
+    }
+
+    .cr-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--cyan-bright);
+      background: rgba(14, 165, 233, 0.12);
+      padding: 2px 6px;
+      border-radius: 4px;
+      direction: ltr;
+      display: inline-block;
+    }
+
+    /* ================= FORMS & INPUTS (:user-valid / :user-invalid) ================= */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .form-field label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .form-input, .form-select {
+      background: rgba(6, 10, 18, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      border-radius: 7px;
+      padding: 7px 10px;
+      color: #ffffff;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+
+    .form-input:focus, .form-select:focus {
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 0 2px rgba(234, 179, 8, 0.18);
+    }
+
+    .form-input:user-invalid {
+      border-color: var(--rose-primary);
+      background: rgba(244, 63, 94, 0.08);
+    }
+
+    .form-input:user-valid {
+      border-color: rgba(16, 185, 129, 0.45);
+    }
+
+    .preset-strip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .preset-chip {
+      appearance: none;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .preset-chip:hover {
+      border-color: var(--emerald-primary);
+      color: var(--emerald-bright);
+      background: rgba(16, 185, 129, 0.1);
+    }
+
+    /* ================= ZATCA PHASE 2 QR & TLV BOX ================= */
+    .zatca-layout {
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 14px;
+    }
+
+    .qr-preview-box {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(6, 10, 18, 0.75);
+      border: 1px solid rgba(234, 179, 8, 0.28);
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .qr-canvas-frame {
+      background: #ffffff;
+      padding: 8px;
+      border-radius: 8px;
+      width: 136px;
+      height: 136px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 0 20px rgba(234, 179, 8, 0.2);
+    }
+
+    .tlv-stream {
+      background: rgba(3, 6, 12, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      border-radius: 8px;
+      padding: 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--emerald-bright);
+      direction: ltr;
+      text-align: left;
+      word-break: break-all;
+      line-height: 1.55;
+    }
+
+    .tlv-tag-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      direction: ltr;
+    }
+
+    .tlv-tag-chip {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      border-radius: 6px;
+      padding: 6px 8px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+    }
+
+    .tlv-tag-chip strong {
+      display: block;
+      color: var(--gold-bright);
+      margin-bottom: 2px;
+    }
+
+    /* ================= MODAL FOR OFFICIAL TAX INVOICE PREVIEW ================= */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 6, 12, 0.82);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      display: none;
+       place-items: center;
+      padding: 20px;
+    }
+
+    .modal-backdrop.open {
+      display: grid;
+    }
+
+    .invoice-modal {
+      background: #0b111e;
+      border: 1px solid var(--border-gold);
+      border-radius: 14px;
+      max-width: 680px;
+      width: 100%;
+      padding: 20px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* Toast notification */
+    .exec-toast {
+      position: fixed;
+      bottom: 20px;
+      inset-inline-end: 20px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid var(--emerald-primary);
+      color: #ffffff;
+      padding: 10px 16px;
+      border-radius: 9px;
+      font-size: 12.5px;
+      font-weight: 600;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.65);
+      z-index: 300;
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: all 0.22s ease;
+    }
+
+    .exec-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ================= RESPONSIVE BREAKPOINTS ================= */
+    @media (max-width: 1200px) {
+      .kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .exec-row-2,
+      .exec-row-equal,
+      .exec-row-3,
+      .zatca-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .topbar-inner,
+      .subnav-inner,
+      .workspace {
+        padding-inline: 12px;
+      }
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      .sliders-grid,
+      .tlv-tag-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .qr-preview-box {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .kpi-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= ULTRA-COMPACT EXECUTIVE TOPBAR ================= -->
+  <header class="exec-topbar">
+    <div class="topbar-inner">
+      <!-- Brand Cluster -->
+      <div class="brand-cluster">
+        <div class="brand-crest">SC</div>
+        <div class="brand-titles">
+          <div class="brand-name-row">
+            <span class="brand-name" id="ui-brand-title">SovereignCFO Enterprise</span>
+            <span class="ifrs-pill" id="ui-balance-pill">
+              <span class="dot"></span>
+              <span id="ui-balance-text">IFRS 18 • Dr = Cr BALANCED</span>
+            </span>
+          </div>
+          <span class="brand-sub" id="ui-brand-sub">منظومة الإدارة المالية الموحدة والفوترة الإلكترونية • IFRS 18 & ZATCA Phase-2</span>
+        </div>
+      </div>
+
+      <!-- Entity Switcher -->
+      <div class="entity-bar" role="tablist" aria-label="Consolidated Entities">
+        <button type="button" class="entity-btn active" data-entity="consolidated" onclick="switchEntity('consolidated')">
+          <span id="ent-label-consolidated">المجموعة القابضة</span>
+          <span class="entity-code">HOLDING</span>
+        </button>
+        <button type="button" class="entity-btn" data-entity="ksa_cloud" onclick="switchEntity('ksa_cloud')">
+          <span id="ent-label-cloud">السعودية للسحابة</span>
+          <span class="entity-code">KSA-AI</span>
+        </button>
+        <button type="button" class="entity-btn" data-entity="gulf_logistics" onclick="switchEntity('gulf_logistics')">
+          <span id="ent-label-logistics">الخليج اللوجستية</span>
+          <span class="entity-code">LOGX</span>
+        </button>
+        <button type="button" class="entity-btn" data-entity="fintech_pay" onclick="switchEntity('fintech_pay')">
+          <span id="ent-label-fintech">المدفوعات الرقمية</span>
+          <span class="entity-code">FINPAY</span>
+        </button>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="topbar-actions">
+        <button type="button" class="action-btn gold" onclick="switchTab('gl'); document.getElementById('je-desc').focus();">
+          <span>+</span>
+          <span id="btn-new-je">قيد يومية فوري</span>
+        </button>
+        <button type="button" class="action-btn" onclick="exportFinancialCSV()">
+          <span>⬇</span>
+          <span id="btn-export-csv">تصدير CSV</span>
+        </button>
+        <button type="button" class="action-btn" onclick="toggleLanguage()" id="btn-lang-toggle">
+          🌐 English
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= SUB-NAVIGATION BAR (ZERO SCROLLBARS) ================= -->
+  <nav class="subnav-bar" aria-label="Primary Financial Modules">
+    <div class="subnav-inner">
+      <div class="nav-tabs">
+        <button type="button" class="nav-tab active" data-tab="fpa" onclick="switchTab('fpa')">
+          <span>📊</span>
+          <span id="tab-label-fpa">لوحة القيادة والربحية (FP&A)</span>
+        </button>
+        <button type="button" class="nav-tab" data-tab="gl" onclick="switchTab('gl')">
+          <span>⚖️</span>
+          <span id="tab-label-gl">الأستاذ العام وميزان المراجعة</span>
+          <span class="badge-count" id="gl-count-badge">8</span>
+        </button>
+        <button type="button" class="nav-tab" data-tab="ifrs" onclick="switchTab('ifrs')">
+          <span>🏛️</span>
+          <span id="tab-label-ifrs">القوائم المالية الموحدة (IFRS)</span>
+        </button>
+        <button type="button" class="nav-tab" data-tab="zatca" onclick="switchTab('zatca')">
+          <span>🧾</span>
+          <span id="tab-label-zatca">الفوترة الإلكترونية (ZATCA)</span>
+        </button>
+        <button type="button" class="nav-tab" data-tab="all" onclick="switchTab('all')">
+          <span>🌐</span>
+          <span id="tab-label-all">العرض التنفيذي الشامل</span>
+        </button>
+      </div>
+
+      <div class="telemetry-strip">
+        <span class="telemetry-item">
+          <span id="lbl-elim">استبعادات داخلية:</span>
+          <span class="telemetry-val" id="val-elim" style="color:#fb7185;direction:ltr;">-8,400,000 SAR</span>
+        </span>
+        <span class="telemetry-item">
+          <span id="lbl-wacc-top">تكلفة رأس المال (WACC):</span>
+          <span class="telemetry-val" id="val-wacc-top" style="color:#fde047;direction:ltr;">8.5%</span>
+        </span>
+        <span class="telemetry-item">
+          <span id="lbl-period">الفترة المالية:</span>
+          <span class="telemetry-val" style="direction:ltr;">FY 2026 (Q1–Q4)</span>
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================= MAIN EXECUTIVE WORKSPACE ================= -->
+  <main class="workspace">
+
+    <!-- 1. SYMMETRICAL 4-CARD EXECUTIVE KPI STRIP (ALWAYS VISIBLE ABOVE THE FOLD) -->
+    <section class="kpi-grid" aria-label="Key Financial Performance Indicators">
+      <!-- KPI 1: Revenue -->
+      <article class="kpi-card gold-accent">
+        <div class="kpi-top">
+          <span class="kpi-label" id="kpi-title-rev">إجمالي الإيرادات الموحدة <span dir="ltr">(Revenue)</span></span>
+          <span class="kpi-tag up" id="kpi-delta-rev">+18.4% YoY</span>
+        </div>
+        <div class="kpi-mid">
+          <div>
+            <span class="kpi-value" id="kpi-val-rev">142,850,000</span>
+            <span class="kpi-unit">SAR</span>
+          </div>
+          <svg class="kpi-spark" viewBox="0 0 80 28" fill="none">
+            <path d="M2 24 L16 20 L30 17 L44 18 L58 11 L78 4" stroke="#eab308" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M2 24 L16 20 L30 17 L44 18 L58 11 L78 4 L78 28 L2 28 Z" fill="rgba(234,179,8,0.15)"/>
+          </svg>
+        </div>
+        <div class="kpi-foot">
+          <span id="kpi-sub-rev">صافي بعد الاستبعادات</span>
+          <span class="kpi-formula">Gross Margin: <strong id="kpi-gm-pct" style="color:#fde047;">58.4%</strong></span>
+        </div>
+      </article>
+
+      <!-- KPI 2: EBITDA -->
+      <article class="kpi-card emerald-accent">
+        <div class="kpi-top">
+          <span class="kpi-label" id="kpi-title-ebitda">الربح التشغيلي <span dir="ltr">(EBITDA)</span></span>
+          <span class="kpi-tag up" id="kpi-margin-ebitda">33.2% Margin</span>
+        </div>
+        <div class="kpi-mid">
+          <div>
+            <span class="kpi-value" id="kpi-val-ebitda">47,420,000</span>
+            <span class="kpi-unit">SAR</span>
+          </div>
+          <svg class="kpi-spark" viewBox="0 0 80 28" fill="none">
+            <path d="M2 23 L18 19 L34 15 L50 14 L64 9 L78 5" stroke="#10b981" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M2 23 L18 19 L34 15 L50 14 L64 9 L78 5 L78 28 L2 28 Z" fill="rgba(16,185,129,0.15)"/>
+          </svg>
+        </div>
+        <div class="kpi-foot">
+          <span id="kpi-sub-ebitda">قبل الفوائد والضرائب والإهلاك</span>
+          <span class="kpi-formula">OPEX Ratio: <strong id="kpi-opex-pct" style="color:#34d399;">25.2%</strong></span>
+        </div>
+      </article>
+
+      <!-- KPI 3: Net Profit & ROE -->
+      <article class="kpi-card cyan-accent">
+        <div class="kpi-top">
+          <span class="kpi-label" id="kpi-title-net">صافي الربح النهائي <span dir="ltr">(Net Profit)</span></span>
+          <span class="kpi-tag gold" id="kpi-roe-badge">ROE: 22.4%</span>
+        </div>
+        <div class="kpi-mid">
+          <div>
+            <span class="kpi-value" id="kpi-val-net">34,190,000</span>
+            <span class="kpi-unit">SAR</span>
+          </div>
+          <svg class="kpi-spark" viewBox="0 0 80 28" fill="none">
+            <path d="M2 25 L18 22 L34 18 L48 15 L64 10 L78 6" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M2 25 L18 22 L34 18 L48 15 L64 10 L78 6 L78 28 L2 28 Z" fill="rgba(56,189,248,0.15)"/>
+          </svg>
+        </div>
+        <div class="kpi-foot">
+          <span id="kpi-sub-net">بعد الزكاة الشرعية (2.5%) والضرائب</span>
+          <span class="kpi-formula">Net Margin: <strong id="kpi-net-pct" style="color:#38bdf8;">23.9%</strong></span>
+        </div>
+      </article>
+
+      <!-- KPI 4: Free Cash Flow & Working Capital -->
+      <article class="kpi-card violet-accent">
+        <div class="kpi-top">
+          <span class="kpi-label" id="kpi-title-fcf">التدفق النقدي الحر <span dir="ltr">(FCF)</span></span>
+          <span class="kpi-tag up" id="kpi-cr-badge">Current Ratio: 2.48x</span>
+        </div>
+        <div class="kpi-mid">
+          <div>
+            <span class="kpi-value" id="kpi-val-fcf">41,680,000</span>
+            <span class="kpi-unit">SAR</span>
+          </div>
+          <svg class="kpi-spark" viewBox="0 0 80 28" fill="none">
+            <path d="M2 22 L18 20 L34 14 L50 12 L64 8 L78 3" stroke="#a78bfa" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M2 22 L18 20 L34 14 L50 12 L64 8 L78 3 L78 28 L2 28 Z" fill="rgba(167,139,250,0.15)"/>
+          </svg>
+        </div>
+        <div class="kpi-foot">
+          <span id="kpi-sub-fcf">السيولة النقدية المتاحة بالخزينة</span>
+          <span class="kpi-formula">NPV: <strong id="kpi-npv-val" style="color:#c4b5fd;">+68.4M SAR</strong></span>
+        </div>
+      </article>
+    </section>
+
+    <!-- ================= MODULE 1: FP&A EXECUTIVE COMMAND CENTER ================= -->
+    <section class="module-section active" id="sec-fpa">
+      <!-- Top Row of Charts: Waterfall + 12M Cash Flow (Visible immediately above the fold!) -->
+      <div class="exec-row-2">
+        <!-- Waterfall Chart Panel -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <div class="panel-title-group">
+              <div class="panel-icon">📉</div>
+              <div>
+                <h2 class="panel-title" id="title-waterfall">تحليل شلال الربحية الموحد <span dir="ltr">(P&L Waterfall)</span></h2>
+                <p class="panel-subtitle" id="sub-waterfall">تتبع تحول الإيرادات عبر تكلفة المبيعات والمصاريف التشغيلية والزكاة إلى صافي الربح</p>
+              </div>
+            </div>
+            <span class="panel-badge" id="badge-waterfall">IFRS 18 P&L</span>
+          </div>
+          <div class="canvas-box">
+            <canvas id="waterfallCanvas"></canvas>
+            <div class="chart-tooltip" id="waterfallTooltip"></div>
+          </div>
+        </div>
+
+        <!-- 12-Month Treasury Cash Flow Trajectory -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <div class="panel-title-group">
+              <div class="panel-icon" style="background:rgba(16,185,129,0.14);color:#34d399;border-color:rgba(16,185,129,0.3);">💹</div>
+              <div>
+                <h2 class="panel-title" id="title-cashflow">مسار التدفقات النقدية للخزينة <span dir="ltr">(12M Cash Flow Trajectory)</span></h2>
+                <p class="panel-subtitle" id="sub-cashflow">التدفقات الداخلة (Inflows) مقابل التدفقات الخارجة (Outflows) وصافي السيولة التراكمي</p>
+              </div>
+            </div>
+            <span class="panel-badge" style="background:rgba(16,185,129,0.14);color:#34d399;border-color:rgba(16,185,129,0.3);">TREASURY 12M</span>
+          </div>
+          <div class="canvas-box">
+            <canvas id="cashflowCanvas"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second Row: What-If Macroeconomic Stress Testing + Capital Structure & Ratios -->
+      <div class="exec-row-2">
+        <!-- Interactive What-If Sensitivity Simulator -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <div class="panel-title-group">
+              <div class="panel-icon" style="background:rgba(14,165,233,0.14);color:#38bdf8;border-color:rgba(14,165,233,0.3);">🎛️</div>
+              <div>
+                <h2 class="panel-title" id="title-whatif">محاكي اختبارات الضغط والسيناريوهات المالية <span dir="ltr">(What-If Stress Testing)</span></h2>
+                <p class="panel-subtitle" id="sub-whatif">حرّك المؤشرات لمحاكاة أثر التضخم ونمو المبيعات وكفاءة التشغيل على صافي الربح والتقييم</p>
+              </div>
+            </div>
+            <button type="button" class="action-btn" onclick="resetWhatIf()" id="btn-reset-whatif">إعادة الضبط ↺</button>
+          </div>
+
+          <div class="sliders-grid">
+            <div class="slider-item">
+              <div class="slider-top">
+                <span id="lbl-sl-rev">معدل نمو الإيرادات (Revenue Growth)</span>
+                <span class="slider-val" id="val-sl-rev">+0.0%</span>
+              </div>
+              <input type="range" id="sl-rev" aria-label="Revenue Growth" min="-20" max="35" step="0.5" value="0" oninput="updateWhatIf()" />
+            </div>
+
+            <div class="slider-item">
+              <div class="slider-top">
+                <span id="lbl-sl-cogs">تضخم تكلفة المبيعات (COGS Delta)</span>
+                <span class="slider-val" id="val-sl-cogs">0.0%</span>
+              </div>
+              <input type="range" id="sl-cogs" aria-label="COGS Delta" min="-15" max="20" step="0.5" value="0" oninput="updateWhatIf()" />
+            </div>
+
+            <div class="slider-item">
+              <div class="slider-top">
+                <span id="lbl-sl-opex">ترشيد المصاريف التشغيلية (OPEX Change)</span>
+                <span class="slider-val" id="val-sl-opex">0.0%</span>
+              </div>
+              <input type="range" id="sl-opex" aria-label="OPEX Change" min="-25" max="25" step="0.5" value="0" oninput="updateWhatIf()" />
+            </div>
+
+            <div class="slider-item">
+              <div class="slider-top">
+                <span id="lbl-sl-wacc">تكلفة رأس المال المرجحة (WACC Rate)</span>
+                <span class="slider-val" id="val-sl-wacc">8.5%</span>
+              </div>
+              <input type="range" id="sl-wacc" aria-label="WACC Rate" min="5" max="15" step="0.25" value="8.5" oninput="updateWhatIf()" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Capital Structure & Institutional Ratios -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <div class="panel-title-group">
+              <div class="panel-icon" style="background:rgba(139,92,246,0.14);color:#c4b5fd;border-color:rgba(139,92,246,0.3);">🧭</div>
+              <div>
+                <h2 class="panel-title" id="title-ratios">هيكل رأس المال ومؤشرات الملاءة المؤسسية <span dir="ltr">(Capital & Solvency)</span></h2>
+                <p class="panel-subtitle" id="sub-ratios">توزيع الأصول والالتزامات وحقوق الملكية مع النسب المالية المعتمدة</p>
+              </div>
+            </div>
+            <span class="panel-badge" style="background:rgba(139,92,246,0.14);color:#c4b5fd;border-color:rgba(139,92,246,0.3);">SOLVENCY AA+</span>
+          </div>
+
+          <div style="display:grid;grid-template-columns:145px 1fr;gap:12px;align-items:center;">
+            <div style="height:135px;position:relative;">
+              <canvas id="donutCanvas"></canvas>
+            </div>
+            <div class="ratios-grid">
+              <div class="ratio-box">
+                <span class="ratio-name" id="rat-lbl-1">العائد على الأصول (ROA)</span>
+                <span class="ratio-num" id="rat-val-roa">13.0%</span>
+              </div>
+              <div class="ratio-box">
+                <span class="ratio-name" id="rat-lbl-2">العائد على الملكية (ROE)</span>
+                <span class="ratio-num" id="rat-val-roe">22.4%</span>
+              </div>
+              <div class="ratio-box">
+                <span class="ratio-name" id="rat-lbl-3">نسبة التداول (Current)</span>
+                <span class="ratio-num" id="rat-val-cr">2.48x</span>
+              </div>
+              <div class="ratio-box">
+                <span class="ratio-name" id="rat-lbl-4">الدين إلى الملكية (D/E)</span>
+                <span class="ratio-num" id="rat-val-de" style="color:#fde047;">0.52x</span>
+              </div>
+              <div class="ratio-box">
+                <span class="ratio-name" id="rat-lbl-5">تغطية الفوائد (ICR)</span>
+                <span class="ratio-num" id="rat-val-icr">14.8x</span>
+              </div>
+              <div class="ratio-box">
+                <span class="ratio-name" id="rat-lbl-6">التزام الفوترة ZATCA</span>
+                <span class="ratio-num" style="color:#34d399;">100%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MODULE 2: DOUBLE-ENTRY GENERAL LEDGER & TRIAL BALANCE ================= -->
+    <section class="module-section" id="sec-gl">
+      <div class="exec-row-2">
+        <!-- New Journal Voucher Entry Form -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <div class="panel-title-group">
+              <div class="panel-icon">✍️</div>
+              <div>
+                <h2 class="panel-title" id="title-je-form">إدخال سند قيد يومية مزدوج (Double-Entry Journal Voucher)</h2>
+                <p class="panel-subtitle" id="sub-je-form">يتم التحقق آلياً من توازن القيد (المدين = الدائن) وترحيله فوراً لميزان المراجعة والقوائم المالية</p>
+              </div>
+            </div>
+            <span class="panel-badge" id="je-eq-badge">∑ Dr = ∑ Cr</span>
+          </div>
+
+          <div class="preset-strip">
+            <span style="font-size:11px;color:var(--text-muted);" id="lbl-presets">قيود سريعة جاهزة:</span>
+            <button type="button" class="preset-chip" onclick="applyPresetJE('cloud')">+ تحصيل عقد سحابي (1,200,000 SAR)</button>
+            <button type="button" class="preset-chip" onclick="applyPresetJE('vendor')">+ سداد موردين تشغيلي (450,000 SAR)</button>
+            <button type="button" class="preset-chip" onclick="applyPresetJE('capex')">+ شراء خوادم ذكاء اصطناعي (850,000 SAR)</button>
+          </div>
+
+          <form id="jeForm" onsubmit="submitJournalEntry(event)">
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="je-desc" id="lbl-je-desc">بيان القيد المحاسبي (Description)</label>
+                <input type="text" id="je-desc" class="form-input" required minlength="3" placeholder="مثال: تحصيل دفعة مشروع السحابة الحكومية" value="تحصيل دفعة عقد سحابة سيادية - الربع الرابع" />
+              </div>
+              <div class="form-field">
+                <label for="je-dr" id="lbl-je-dr">الحساب المدين (Debit Account - من حـ/)</label>
+                <select id="je-dr" class="form-select">
+                  <option value="1101">1101 - النقدية وما في حكمها (Cash & Treasury)</option>
+                  <option value="1102">1102 - الذمم المدينة للعملاء (Accounts Receivable)</option>
+                  <option value="1201">1201 - الممتلكات والمعدات التقنية (PP&E / Servers)</option>
+                  <option value="2101">2101 - الذمم الدائنة للموردين (Accounts Payable)</option>
+                  <option value="5101">5101 - تكلفة الإيرادات والتشغيل (COGS)</option>
+                  <option value="5201">5201 - المصاريف الإدارية والعمومية (SG&A OPEX)</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="je-cr" id="lbl-je-cr">الحساب الدائن (Credit Account - إلى حـ/)</label>
+                <select id="je-cr" class="form-select">
+                  <option value="4101" selected>4101 - إيرادات العقود والخدمات (Operating Revenue)</option>
+                  <option value="1101">1101 - النقدية وما في حكمها (Cash & Treasury)</option>
+                  <option value="1102">1102 - الذمم المدينة للعملاء (Accounts Receivable)</option>
+                  <option value="2101">2101 - الذمم الدائنة للموردين (Accounts Payable)</option>
+                  <option value="3101">3101 - رأس المال المصدر (Share Capital)</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-top:10px;flex-wrap:wrap;">
+              <div class="form-field" style="min-width:220px;flex:1;">
+                <label for="je-amount" id="lbl-je-amt">المبلغ بالريال السعودي (Amount in SAR)</label>
+                <input type="number" id="je-amount" class="form-input" required min="1000" step="500" value="1200000" style="font-family:var(--font-mono);font-weight:700;color:#fde047;" />
+              </div>
+              <button type="submit" class="action-btn gold" style="padding:8px 18px;font-size:12.5px;">
+                <span>✓</span>
+                <span id="btn-post-je">اعتماد وترحيل القيد لدفتر الأستاذ</span>
+              </button>
+            </div>
+          </form>
+
+          <!-- Recent Journal Entries Log -->
+          <div class="table-wrap scroller" style="max-height:240px;">
+            <table class="fin-table">
+              <thead>
+                <tr>
+                  <th>رقم القيد</th>
+                  <th>التاريخ</th>
+                  <th>البيان المحاسبي</th>
+                  <th>الحساب المدين (Dr)</th>
+                  <th>الحساب الدائن (Cr)</th>
+                  <th>المبلغ (SAR)</th>
+                </tr>
+              </thead>
+              <tbody id="glJournalBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Live Trial Balance Table (ميزان المراجعة بالأرصدة) -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <div class="panel-title-group">
+              <div class="panel-icon" style="background:rgba(16,185,129,0.14);color:#34d399;border-color:rgba(16,185,129,0.3);">⚖️</div>
+              <div>
+                <h2 class="panel-title" id="title-tb">ميزان المراجعة الموحد بالأرصدة (Trial Balance)</h2>
+                <p class="panel-subtitle" id="sub-tb">مطابقة لحظية لمعادلة التوازن المحاسبي: الأصول + المصروفات = الالتزامات + الملكية + الإيرادات</p>
+              </div>
+            </div>
+            <span class="ifrs-pill" id="tb-status-badge">
+              <span class="dot"></span>
+              <span>BALANCED • 0.00 DIFF</span>
+            </span>
+          </div>
+
+          <div class="table-wrap scroller">
+            <table class="fin-table">
+              <thead>
+                <tr>
+                  <th>رمز الحساب</th>
+                  <th>اسم الحساب المحاسبي (COA)</th>
+                  <th>التصنيف</th>
+                  <th>رصيد مدين (Debit)</th>
+                  <th>رصيد دائن (Credit)</th>
+                </tr>
+              </thead>
+              <tbody id="trialBalanceBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MODULE 3: IFRS CONSOLIDATED FINANCIAL STATEMENTS ================= -->
+    <section class="module-section" id="sec-ifrs">
+      <div class="exec-row-equal">
+        <!-- Consolidated Income Statement (P&L) -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <div class="panel-title-group">
+              <div class="panel-icon">📈</div>
+              <div>
+                <h2 class="panel-title" id="title-is">قائمة الدخل الموحدة (IFRS Consolidated Income Statement)</h2>
+                <p class="panel-subtitle" id="sub-is">تتضمن استبعادات المعاملات الداخلية للمجموعة وحساب الزكاة الشرعية (2.5%)</p>
+              </div>
+            </div>
+            <span class="panel-badge">IAS 1 / IFRS 18</span>
+          </div>
+          <div class="table-wrap">
+            <table class="fin-table">
+              <thead>
+                <tr>
+                  <th>البند المالي (Line Item)</th>
+                  <th>إيضاح</th>
+                  <th>المبلغ (SAR)</th>
+                  <th>النسبة من الإيراد</th>
+                </tr>
+              </thead>
+              <tbody id="incomeStatementBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Consolidated Balance Sheet & Cash Flow Summary -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <div class="panel-title-group">
+              <div class="panel-icon" style="background:rgba(14,165,233,0.14);color:#38bdf8;border-color:rgba(14,165,233,0.3);">🏛️</div>
+              <div>
+                <h2 class="panel-title" id="title-bs">قائمة المركز المالي الموحدة (Statement of Financial Position)</h2>
+                <p class="panel-subtitle" id="sub-bs">تحقق معادلة الميزانية: إجمالي الأصول = إجمالي الالتزامات + حقوق الملكية</p>
+              </div>
+            </div>
+            <span class="ifrs-pill">Assets = L + E</span>
+          </div>
+          <div class="table-wrap">
+            <table class="fin-table">
+              <thead>
+                <tr>
+                  <th>بند المركز المالي (Balance Sheet Item)</th>
+                  <th>التصنيف</th>
+                  <th>الرصيد المعتمد (SAR)</th>
+                </tr>
+              </thead>
+              <tbody id="balanceSheetBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MODULE 4: ZATCA PHASE-2 (FATOORA) E-INVOICING ENGINE ================= -->
+    <section class="module-section" id="sec-zatca">
+      <div class="zatca-layout">
+        <!-- ZATCA Invoice Form & Tax Breakdown -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <div class="panel-title-group">
+              <div class="panel-icon">🧾</div>
+              <div>
+                <h2 class="panel-title" id="title-zatca">محرك الفوترة الإلكترونية والربط التكاملي (ZATCA Phase-2 Fatoora)</h2>
+                <p class="panel-subtitle" id="sub-zatca">توليد فواتير ضريبية معيارية (ضريبة القيمة المضافة 15%) مع ترميز TLV Base64 والتوقيع الرقمي SHA-256</p>
+              </div>
+            </div>
+            <button type="button" class="action-btn gold" onclick="openInvoiceModal()">
+              <span>🖨️</span>
+              <span id="btn-preview-inv">معاينة الفاتورة الضريبية</span>
+            </button>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="zatca-seller" id="lbl-z-seller">اسم المنشأة المورّدة (Tag 1: Seller Name)</label>
+              <input type="text" id="zatca-seller" class="form-input" value="شركة السيادة المالية القابضة - SovereignCFO" oninput="updateZatcaEngine()" />
+            </div>
+            <div class="form-field">
+              <label for="zatca-vatno" id="lbl-z-vatno">الرقم الضريبي المكون من 15 رقماً (Tag 2: VAT ID)</label>
+              <input type="text" id="zatca-vatno" class="form-input" value="310123456700003" maxlength="15" pattern="[0-9]{15}" style="font-family:var(--font-mono);" oninput="updateZatcaEngine()" />
+            </div>
+            <div class="form-field">
+              <label for="zatca-buyer" id="lbl-z-buyer">الجهة المستفيدة / العميل (Buyer Entity)</label>
+              <input type="text" id="zatca-buyer" class="form-input" value="هيئة البنية الرقمية والبيانات الوطنية" oninput="updateZatcaEngine()" />
+            </div>
+            <div class="form-field">
+              <label for="zatca-subtotal" id="lbl-z-sub">المبلغ الخاضع للضريبة قبل VAT (SAR)</label>
+              <input type="number" id="zatca-subtotal" class="form-input" value="250000" min="100" step="500" style="font-family:var(--font-mono);font-weight:700;color:#fde047;" oninput="updateZatcaEngine()" />
+            </div>
+            <div class="form-field">
+              <label for="zatca-vat-display" id="lbl-z-vatamt">ضريبة القيمة المضافة المعتمدة (15% VAT - Tag 5)</label>
+              <input type="text" id="zatca-vat-display" class="form-input" readonly style="font-family:var(--font-mono);color:#34d399;background:rgba(16,185,129,0.08);" />
+            </div>
+            <div class="form-field">
+              <label for="zatca-total-display" id="lbl-z-total">إجمالي الفاتورة شامل الضريبة (Total Incl. VAT - Tag 4)</label>
+              <input type="text" id="zatca-total-display" class="form-input" readonly style="font-family:var(--font-mono);font-weight:800;color:#38bdf8;background:rgba(14,165,233,0.08);" />
+            </div>
+          </div>
+
+          <!-- TLV Tags 1-5 Breakdown -->
+          <div class="tlv-tag-grid" id="tlvTagGrid"></div>
+        </div>
+
+        <!-- QR Code & Cryptographic TLV Base64 Stream -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <div class="panel-title-group">
+              <div class="panel-icon" style="background:rgba(16,185,129,0.14);color:#34d399;border-color:rgba(16,185,129,0.3);">🔐</div>
+              <div>
+                <h2 class="panel-title" id="title-qr">الختم التشفيري ورمز الاستجابة السريعة (ZATCA TLV QR & Stamp)</h2>
+                <p class="panel-subtitle" id="sub-qr">متوافق مع متطلبات هيئة الزكاة والضريبة والجمارك للمرحلة الثانية (الربط والتكامل)</p>
+              </div>
+            </div>
+            <span class="ifrs-pill">FATOORA XML/TLV</span>
+          </div>
+
+          <div class="qr-preview-box">
+            <div class="qr-canvas-frame">
+              <canvas id="zatcaQrCanvas" width="120" height="120"></canvas>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;flex:1;">
+              <div style="font-size:11px;color:var(--text-muted);">TLV Base64 Payload (Tags 1–5):</div>
+              <div class="tlv-stream" id="zatcaBase64Box"></div>
+              <div style="font-size:10.5px;color:var(--text-muted);font-family:var(--font-mono);direction:ltr;" id="zatcaHashBox"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= OFFICIAL ZATCA TAX INVOICE MODAL ================= -->
+  <div class="modal-backdrop" id="invoiceModal" onclick="if(event.target===this)closeInvoiceModal()">
+    <div class="invoice-modal">
+      <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-subtle);padding-bottom:10px;">
+        <div>
+          <h3 style="font-size:16px;font-weight:800;color:#fde047;">فاتورة ضريبية إلكترونية معتمدة (Tax Invoice)</h3>
+          <p style="font-size:11.5px;color:var(--text-muted);font-family:var(--font-mono);">ZATCA Phase-2 Cryptographic Invoice • UUID: <span id="inv-modal-uuid">8f94d2c0-7a1b-44e2-99c1-5520ab19ef04</span></p>
+        </div>
+        <button type="button" class="action-btn" onclick="closeInvoiceModal()">✕ إغلاق</button>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;background:rgba(15,23,42,0.75);padding:12px;border-radius:9px;border:1px solid var(--border-subtle);font-size:12px;">
+        <div>
+          <div style="color:var(--text-muted);font-size:11px;">المورّد (Seller):</div>
+          <div style="font-weight:700;color:#fff;" id="inv-modal-seller"></div>
+          <div style="font-family:var(--font-mono);font-size:11px;color:#fde047;" id="inv-modal-vatno"></div>
+        </div>
+        <div>
+          <div style="color:var(--text-muted);font-size:11px;">المشتري (Buyer):</div>
+          <div style="font-weight:700;color:#fff;" id="inv-modal-buyer"></div>
+          <div style="font-family:var(--font-mono);font-size:11px;color:#38bdf8;" id="inv-modal-time"></div>
+        </div>
+      </div>
+
+      <table class="fin-table">
+        <thead>
+          <tr>
+            <th>البيان</th>
+            <th>المبلغ قبل الضريبة</th>
+            <th>ضريبة القيمة المضافة (15%)</th>
+            <th>الإجمالي الشامل (SAR)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="total-row">
+            <td>خدمات وأنظمة مؤسسية واستشارات مالية</td>
+            <td><span class="mono-num" id="inv-modal-sub"></span></td>
+            <td><span class="mono-num" id="inv-modal-vat"></span></td>
+            <td><span class="mono-num" id="inv-modal-tot"></span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+        <span class="ifrs-pill"><span class="dot"></span> ZATCA FATOORA CLEARED</span>
+        <button type="button" class="action-btn gold" onclick="window.print()">🖨️ طباعة / حفظ PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="exec-toast" id="execToast"></div>
+
+  <!-- ================= ENTERPRISE FINANCIAL ENGINE SCRIPT ================= -->
+  <script>
+    // --- 1. MULTI-ENTITY BASE DATA & CHART OF ACCOUNTS ---
+    const ENTITIES = {
+      consolidated: {
+        nameAr: 'المجموعة القابضة الموحدة',
+        nameEn: 'Consolidated Holding Group',
+        elim: 8400000,
+        cash: 64200000,
+        ar: 38400000,
+        inventory: 19600000,
+        ppe: 141200000,
+        ap: 31800000,
+        taxPayable: 17450000,
+        longDebt: 61500000,
+        capital: 118460000,
+        revenue: 151250000, // before 8.4M intercompany elimination -> 142,850,000 net
+        cogs: 59430000,
+        opex: 36000000,
+        da: 6850000,
+        interest: 3200000,
+        cashInflows: [11.2, 11.8, 12.4, 12.1, 13.0, 13.6, 13.2, 14.1, 14.5, 14.9, 15.3, 16.4],
+        cashOutflows: [7.8, 8.1, 8.5, 8.2, 8.9, 9.1, 8.8, 9.4, 9.6, 9.8, 10.1, 10.5]
+      },
+      ksa_cloud: {
+        nameAr: 'السعودية للسحابة والذكاء الاصطناعي',
+        nameEn: 'KSA Cloud & AI Operations',
+        elim: 0,
+        cash: 28500000,
+        ar: 16200000,
+        inventory: 4200000,
+        ppe: 68400000,
+        ap: 11400000,
+        taxPayable: 7200000,
+        longDebt: 24000000,
+        capital: 56910000,
+        revenue: 68400000,
+        cogs: 24600000,
+        opex: 16800000,
+        da: 3100000,
+        interest: 1400000,
+        cashInflows: [5.1, 5.4, 5.6, 5.5, 5.8, 6.0, 5.9, 6.2, 6.4, 6.6, 6.8, 7.2],
+        cashOutflows: [3.2, 3.4, 3.5, 3.3, 3.6, 3.7, 3.5, 3.8, 3.9, 4.0, 4.1, 4.3]
+      },
+      gulf_logistics: {
+        nameAr: 'الخليج اللوجستية وإدارة الأسطول',
+        nameEn: 'Gulf Logistics & Fleet Corp',
+        elim: 0,
+        cash: 19400000,
+        ar: 14100000,
+        inventory: 12800000,
+        ppe: 52600000,
+        ap: 13900000,
+        taxPayable: 6150000,
+        longDebt: 27500000,
+        capital: 42400000,
+        revenue: 49600000,
+        cogs: 24800000,
+        opex: 11900000,
+        da: 2650000,
+        interest: 1300000,
+        cashInflows: [3.8, 3.9, 4.1, 4.0, 4.3, 4.5, 4.4, 4.6, 4.7, 4.8, 4.9, 5.2],
+        cashOutflows: [2.9, 3.0, 3.1, 3.1, 3.3, 3.4, 3.3, 3.5, 3.5, 3.6, 3.7, 3.8]
+      },
+      fintech_pay: {
+        nameAr: 'بوابة المدفوعات والتقنية المالية',
+        nameEn: 'FinTech Digital Payment Gateway',
+        elim: 0,
+        cash: 16300000,
+        ar: 8100000,
+        inventory: 2600000,
+        ppe: 20200000,
+        ap: 6500000,
+        taxPayable: 4100000,
+        longDebt: 10000000,
+        capital: 19150000,
+        revenue: 33250000,
+        cogs: 10030000,
+        opex: 7300000,
+        da: 1100000,
+        interest: 500000,
+        cashInflows: [2.3, 2.5, 2.7, 2.6, 2.9, 3.1, 2.9, 3.3, 3.4, 3.5, 3.6, 4.0],
+        cashOutflows: [1.7, 1.7, 1.9, 1.8, 2.0, 2.0, 2.0, 2.1, 2.2, 2.2, 2.3, 2.4]
+      }
+    };
+
+    const COA_NAMES = {
+      '1101': { ar: 'النقدية وما في حكمها بالخزينة', en: 'Cash & Cash Equivalents', type: 'أصول متداولة (Asset)' },
+      '1102': { ar: 'الذمم المدينة للعملاء', en: 'Accounts Receivable (AR)', type: 'أصول متداولة (Asset)' },
+      '1103': { ar: 'المخزون التشغيلي والاستراتيجي', en: 'Operating Inventory', type: 'أصول متداولة (Asset)' },
+      '1201': { ar: 'الممتلكات والمعدات والبنية التقنية', en: 'Property, Plant & Equipment', type: 'أصول غير متداولة (Asset)' },
+      '2101': { ar: 'الذمم الدائنة للموردين', en: 'Accounts Payable (AP)', type: 'التزامات متداولة (Liability)' },
+      '2102': { ar: 'مخصص الزكاة والضرائب المستحقة', en: 'Zakat & VAT Payable', type: 'التزامات متداولة (Liability)' },
+      '2201': { ar: 'القروض والتمويل المهيكل طويل الأجل', en: 'Long-Term Sukuk & Debt', type: 'التزامات طويلة الأجل (Liability)' },
+      '3101': { ar: 'رأس المال المصدر والاحتياطي النظامي', en: 'Issued Share Capital & Reserves', type: 'حقوق الملكية (Equity)' },
+      '4101': { ar: 'إيرادات العقود والخدمات التشغيلية', en: 'Consolidated Operating Revenue', type: 'الإيرادات (Revenue)' },
+      '5101': { ar: 'تكلفة الإيرادات والمبيعات المباشرة', en: 'Cost of Goods & Services (COGS)', type: 'المصروفات (Expense)' },
+      '5201': { ar: 'المصاريف التشغيلية والإدارية (SG&A)', en: 'Operating & SG&A Expenses', type: 'المصروفات (Expense)' },
+      '5301': { ar: 'الإهلاك والاستهلاك وتكلفة التمويل والزكاة', en: 'D&A, Finance Cost & Zakat', type: 'المصروفات (Expense)' }
+    };
+
+    let currentEntity = 'consolidated';
+    let currentTab = 'fpa';
+    let currentLang = 'ar';
+
+    // Live Custom Journal Entries posted by user
+    const journalEntries = [
+      { id: 'JV-2026-088', date: '2026-10-15', desc: 'تحصيل دفعة مشروع السحابة الوطنية السيادية', dr: '1101', cr: '4101', amount: 4800000 },
+      { id: 'JV-2026-087', date: '2026-10-12', desc: 'سداد مستحقات موردي مراكز البيانات والألياف', dr: '2101', cr: '1101', amount: 1650000 },
+      { id: 'JV-2026-086', date: '2026-10-09', desc: 'رسملة خوادم ومسرعات ذكاء اصطناعي H200', dr: '1201', cr: '1101', amount: 3200000 },
+      { id: 'JV-2026-085', date: '2026-10-05', desc: 'إثبات إيرادات بوابة المدفوعات الرقمية المؤسسية', dr: '1102', cr: '4101', amount: 2450000 },
+      { id: 'JV-2026-084', date: '2026-10-02', desc: 'تسوية مصاريف الكوادر الهندسية والتشغيلية', dr: '5201', cr: '1101', amount: 1920000 }
+    ];
+
+    // Ledger adjustment deltas from user-added entries
+    const userLedgerDeltas = {
+      '1101': 0, '1102': 0, '1103': 0, '1201': 0,
+      '2101': 0, '2102': 0, '2201': 0, '3101': 0,
+      '4101': 0, '5101': 0, '5201': 0, '5301': 0
+    };
+
+    let waterfallBarsBounds = [];
+
+    function fmtSAR(n) {
+      return Math.round(n).toLocaleString('en-US');
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('execToast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+    }
+
+    // --- 2. COMPUTE FINANCIALS (WITH WHAT-IF & DOUBLE-ENTRY DELTAS) ---
+    function computeFinancialState() {
+      const base = ENTITIES[currentEntity];
+      const revGrowth = parseFloat(document.getElementById('sl-rev').value) / 100;
+      const cogsDelta = parseFloat(document.getElementById('sl-cogs').value) / 100;
+      const opexDelta = parseFloat(document.getElementById('sl-opex').value) / 100;
+      const wacc = parseFloat(document.getElementById('sl-wacc').value) / 100;
+
+      const grossRev = (base.revenue + userLedgerDeltas['4101']) * (1 + revGrowth);
+      const elim = base.elim;
+      const netRev = grossRev - elim;
+
+      const cogs = (base.cogs + userLedgerDeltas['5101']) * (1 + cogsDelta);
+      const grossProfit = netRev - cogs;
+      const opex = (base.opex + userLedgerDeltas['5201']) * (1 + opexDelta);
+      const ebitda = grossProfit - opex;
+      const da = base.da;
+      const ebit = ebitda - da;
+      const interest = base.interest;
+      const ebt = ebit - interest;
+      const zakatAndTax = Math.max(0, ebt * 0.275); // Corporate Tax + 2.5% Zakat effective institutional provision
+      const netIncome = ebt - zakatAndTax;
+
+      // Balance Sheet balances (strictly balanced: Assets = Liabilities + Equity)
+      const cash = base.cash + userLedgerDeltas['1101'] + (netIncome - ( (base.revenue - base.elim - base.cogs - base.opex - base.da - base.interest) * 0.725 ));
+      const ar = base.ar + userLedgerDeltas['1102'];
+      const inv = base.inventory + userLedgerDeltas['1103'];
+      const ppe = base.ppe + userLedgerDeltas['1201'];
+      const totalCurrentAssets = cash + ar + inv;
+      const totalAssets = totalCurrentAssets + ppe;
+
+      const ap = base.ap + userLedgerDeltas['2101'];
+      const taxPayable = base.taxPayable + userLedgerDeltas['2102'];
+      const longDebt = base.longDebt + userLedgerDeltas['2201'];
+      const totalCurrentLiab = ap + taxPayable;
+      const totalLiabilities = totalCurrentLiab + longDebt;
+
+      const shareCapital = base.capital + userLedgerDeltas['3101'];
+      const retainedEarnings = totalAssets - totalLiabilities - shareCapital;
+      const totalEquity = shareCapital + retainedEarnings;
+
+      const fcf = ebitda - zakatAndTax - (da * 0.65);
+      const npv = fcf / (wacc + 0.035) - (ppe * 0.42);
+
+      return {
+        grossRev, elim, netRev, cogs, grossProfit, opex, ebitda, da, ebit, interest, ebt, zakatAndTax, netIncome,
+        cash, ar, inv, ppe, totalCurrentAssets, totalAssets,
+        ap, taxPayable, longDebt, totalCurrentLiab, totalLiabilities,
+        shareCapital, retainedEarnings, totalEquity,
+        fcf, npv, wacc
+      };
+    }
+
+    // --- 3. RENDER ALL TABLES, KPIS & CHARTS ---
+    function renderAll() {
+      const f = computeFinancialState();
+
+      // Update Top Telemetry
+      document.getElementById('val-elim').textContent = f.elim > 0 ? `-${fmtSAR(f.elim)} SAR` : '0 SAR (Standalone)';
+      document.getElementById('val-wacc-top').textContent = `${(f.wacc * 100).toFixed(2)}%`;
+      document.getElementById('gl-count-badge').textContent = journalEntries.length;
+
+      // Update 4 KPI Cards
+      document.getElementById('kpi-val-rev').textContent = fmtSAR(f.netRev);
+      const gmPct = (f.grossProfit / f.netRev) * 100;
+      document.getElementById('kpi-gm-pct').textContent = `${gmPct.toFixed(1)}%`;
+
+      document.getElementById('kpi-val-ebitda').textContent = fmtSAR(f.ebitda);
+      const ebitdaMargin = (f.ebitda / f.netRev) * 100;
+      document.getElementById('kpi-margin-ebitda').textContent = `${ebitdaMargin.toFixed(1)}% Margin`;
+      const opexPct = (f.opex / f.netRev) * 100;
+      document.getElementById('kpi-opex-pct').textContent = `${opexPct.toFixed(1)}%`;
+
+      document.getElementById('kpi-val-net').textContent = fmtSAR(f.netIncome);
+      const netPct = (f.netIncome / f.netRev) * 100;
+      document.getElementById('kpi-net-pct').textContent = `${netPct.toFixed(1)}%`;
+      const roe = (f.netIncome / f.totalEquity) * 100;
+      document.getElementById('kpi-roe-badge').textContent = `ROE: ${roe.toFixed(1)}%`;
+
+      document.getElementById('kpi-val-fcf').textContent = fmtSAR(f.fcf);
+      const currentRatio = f.totalCurrentAssets / f.totalCurrentLiab;
+      document.getElementById('kpi-cr-badge').textContent = `Current Ratio: ${currentRatio.toFixed(2)}x`;
+      document.getElementById('kpi-npv-val').textContent = `${f.npv >= 0 ? '+' : ''}${(f.npv / 1e6).toFixed(1)}M SAR`;
+
+      // Update Ratios Panel
+      const roa = (f.netIncome / f.totalAssets) * 100;
+      const de = f.totalLiabilities / f.totalEquity;
+      const icr = f.ebit / Math.max(1, f.interest);
+      document.getElementById('rat-val-roa').textContent = `${roa.toFixed(1)}%`;
+      document.getElementById('rat-val-roe').textContent = `${roe.toFixed(1)}%`;
+      document.getElementById('rat-val-cr').textContent = `${currentRatio.toFixed(2)}x`;
+      document.getElementById('rat-val-de').textContent = `${de.toFixed(2)}x`;
+      document.getElementById('rat-val-icr').textContent = `${icr.toFixed(1)}x`;
+
+      renderJournalTable();
+      renderTrialBalance(f);
+      renderIFRSStatements(f);
+      drawWaterfallChart(f);
+      drawCashFlowChart();
+      drawDonutChart(f);
+    }
+
+    function renderJournalTable() {
+      const tbody = document.getElementById('glJournalBody');
+      tbody.innerHTML = journalEntries.map(je => {
+        const drName = currentLang === 'ar' ? COA_NAMES[je.dr].ar : COA_NAMES[je.dr].en;
+        const crName = currentLang === 'ar' ? COA_NAMES[je.cr].ar : COA_NAMES[je.cr].en;
+        return `
+          <tr>
+            <td><span class="mono-num" style="color:#fde047;">${je.id}</span></td>
+            <td><span class="mono-num" style="color:var(--text-muted);">${je.date}</span></td>
+            <td style="font-weight:600;">${je.desc}</td>
+            <td><span class="dr-pill">${je.dr}</span> ${drName}</td>
+            <td><span class="cr-pill">${je.cr}</span> ${crName}</td>
+            <td><span class="mono-num" style="color:#34d399;">${fmtSAR(je.amount)}</span></td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function renderTrialBalance(f) {
+      const otherExp = f.da + f.interest + f.zakatAndTax;
+      const rows = [
+        { code: '1101', dr: f.cash, cr: 0 },
+        { code: '1102', dr: f.ar, cr: 0 },
+        { code: '1103', dr: f.inv, cr: 0 },
+        { code: '1201', dr: f.ppe, cr: 0 },
+        { code: '2101', dr: 0, cr: f.ap },
+        { code: '2102', dr: 0, cr: f.taxPayable },
+        { code: '2201', dr: 0, cr: f.longDebt },
+        { code: '3101', dr: 0, cr: f.shareCapital + (f.retainedEarnings - f.netIncome) },
+        { code: '4101', dr: 0, cr: f.netRev },
+        { code: '5101', dr: f.cogs, cr: 0 },
+        { code: '5201', dr: f.opex, cr: 0 },
+        { code: '5301', dr: otherExp, cr: 0 }
+      ];
+
+      let totalDr = 0;
+      let totalCr = 0;
+      const html = rows.map(r => {
+        totalDr += r.dr;
+        totalCr += r.cr;
+        const meta = COA_NAMES[r.code];
+        const title = currentLang === 'ar' ? meta.ar : meta.en;
+        return `
+          <tr>
+            <td><span class="mono-num" style="color:#fde047;">${r.code}</span></td>
+            <td style="font-weight:600;">${title}</td>
+            <td style="color:var(--text-muted);font-size:11px;">${meta.type}</td>
+            <td><span class="mono-num" style="color:${r.dr > 0 ? '#34d399' : '#64748b'};">${r.dr > 0 ? fmtSAR(r.dr) : '—'}</span></td>
+            <td><span class="mono-num" style="color:${r.cr > 0 ? '#38bdf8' : '#64748b'};">${r.cr > 0 ? fmtSAR(r.cr) : '—'}</span></td>
+          </tr>
+        `;
+      }).join('');
+
+      const totalRow = `
+        <tr class="total-row">
+          <td colspan="3">إجمالي ميزان المراجعة الموحد (Total Trial Balance • Dr = Cr)</td>
+          <td><span class="mono-num">${fmtSAR(totalDr)} SAR</span></td>
+          <td><span class="mono-num">${fmtSAR(totalCr)} SAR</span></td>
+        </tr>
+      `;
+      document.getElementById('trialBalanceBody').innerHTML = html + totalRow;
+    }
+
+    function renderIFRSStatements(f) {
+      const pct = (v) => `${((v / f.netRev) * 100).toFixed(1)}%`;
+      const isRows = [
+        { label: 'إجمالي الإيرادات الفردية قبل الاستبعاد (Gross Segment Revenue)', note: 'Note 4', val: f.grossRev, p: pct(f.grossRev), cls: '' },
+        { label: 'استبعادات المعاملات الداخلية للمجموعة (Intercompany Eliminations)', note: 'IFRS 10', val: -f.elim, p: pct(-f.elim), cls: '' },
+        { label: 'صافي الإيرادات الموحدة (Net Consolidated Revenue)', note: 'IFRS 15', val: f.netRev, p: '100.0%', cls: 'section-row' },
+        { label: 'تكلفة الإيرادات والمبيعات المباشرة (Cost of Revenue - COGS)', note: 'Note 6', val: -f.cogs, p: pct(-f.cogs), cls: '' },
+        { label: 'إجمالي الربح (Gross Profit)', note: 'Subtotal', val: f.grossProfit, p: pct(f.grossProfit), cls: 'section-row' },
+        { label: 'المصاريف التشغيلية والإدارية والعمومية (SG&A Operating Expenses)', note: 'Note 8', val: -f.opex, p: pct(-f.opex), cls: '' },
+        { label: 'الربح التشغيلي قبل الإهلاك والضرائب (EBITDA)', note: 'KPI', val: f.ebitda, p: pct(f.ebitda), cls: 'section-row' },
+        { label: 'الإهلاك وإطفاء الأصول التقنية (Depreciation & Amortization)', note: 'IAS 16', val: -f.da, p: pct(-f.da), cls: '' },
+        { label: 'تكاليف التمويل والصكوك الإسلامية (Finance Costs)', note: 'IFRS 9', val: -f.interest, p: pct(-f.interest), cls: '' },
+        { label: 'مخصص الزكاة الشرعية والضريبة (Zakat & Income Tax Provision)', note: 'ZATCA', val: -f.zakatAndTax, p: pct(-f.zakatAndTax), cls: '' },
+        { label: 'صافي ربح السنة الموحد (Net Profit Attributable to Shareholders)', note: 'IFRS 18', val: f.netIncome, p: pct(f.netIncome), cls: 'total-row' }
+      ];
+
+      document.getElementById('incomeStatementBody').innerHTML = isRows.map(r => `
+        <tr class="${r.cls}">
+          <td>${r.label}</td>
+          <td><span class="mono-num" style="font-size:10.5px;color:var(--text-muted);">${r.note}</span></td>
+          <td><span class="mono-num" style="color:${r.val < 0 ? '#fb7185' : (r.cls === 'total-row' ? '#fde047' : '#34d399')};">${r.val < 0 ? '(' + fmtSAR(Math.abs(r.val)) + ')' : fmtSAR(r.val)}</span></td>
+          <td><span class="mono-num">${r.p}</span></td>
+        </tr>
+      `).join('');
+
+      const bsRows = [
+        { label: 'النقدية والودائع قصيرة الأجل بالخزينة (Cash & Treasury)', cat: 'أصول متداولة', val: f.cash, cls: '' },
+        { label: 'الذمم المدينة التجارية (Accounts Receivable)', cat: 'أصول متداولة', val: f.ar, cls: '' },
+        { label: 'المخزون التشغيلي (Inventory)', cat: 'أصول متداولة', val: f.inv, cls: '' },
+        { label: 'الممتلكات والمعدات ومراكز البيانات (PP&E Net)', cat: 'أصول غير متداولة', val: f.ppe, cls: '' },
+        { label: 'إجمالي الأصول الموحدة (Total Consolidated Assets)', cat: 'Assets', val: f.totalAssets, cls: 'section-row' },
+        { label: 'الذمم الدائنة التجارية للموردين (Accounts Payable)', cat: 'التزامات متداولة', val: f.ap, cls: '' },
+        { label: 'مخصصات الزكاة وضريبة القيمة المضافة (Zakat & Tax Payable)', cat: 'التزامات متداولة', val: f.taxPayable, cls: '' },
+        { label: 'تمويل وصكوك طويلة الأجل (Long-Term Debt)', cat: 'التزامات غير متداولة', val: f.longDebt, cls: '' },
+        { label: 'رأس المال المصدر والاحتياطي النظامي (Share Capital)', cat: 'حقوق الملكية', val: f.shareCapital, cls: '' },
+        { label: 'الأرباح المبقاة المتراكمة (Retained Earnings)', cat: 'حقوق الملكية', val: f.retainedEarnings, cls: '' },
+        { label: 'إجمالي الالتزامات وحقوق الملكية (Total Liabilities & Equity)', cat: 'L + E = Assets', val: f.totalLiabilities + f.totalEquity, cls: 'total-row' }
+      ];
+
+      document.getElementById('balanceSheetBody').innerHTML = bsRows.map(r => `
+        <tr class="${r.cls}">
+          <td>${r.label}</td>
+          <td style="font-size:11px;color:var(--text-muted);">${r.cat}</td>
+          <td><span class="mono-num">${fmtSAR(r.val)} SAR</span></td>
+        </tr>
+      `).join('');
+    }
+
+    // --- 4. CANVAS CHARTS (WATERFALL, 12M CASH FLOW, CAPITAL STRUCTURE DONUT) ---
+    function drawWaterfallChart(f) {
+      const canvas = document.getElementById('waterfallCanvas');
+      if (!canvas) return;
+      const rect = canvas.parentElement.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      const w = Math.max(320, rect.width - 12);
+      const h = Math.max(190, rect.height - 12);
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      const ctx = canvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+      ctx.clearRect(0, 0, w, h);
+
+      const steps = [
+        { label: 'الإيرادات', en: 'Revenue', val: f.netRev, start: 0, end: f.netRev, color: '#eab308' },
+        { label: 'تكلفة المبيعات', en: 'COGS', val: -f.cogs, start: f.netRev, end: f.grossProfit, color: '#f43f5e' },
+        { label: 'مجمل الربح', en: 'Gross Profit', val: f.grossProfit, start: 0, end: f.grossProfit, color: '#38bdf8' },
+        { label: 'المصاريف OPEX', en: 'OPEX', val: -f.opex, start: f.grossProfit, end: f.ebitda, color: '#fb7185' },
+        { label: 'EBITDA', en: 'EBITDA', val: f.ebitda, start: 0, end: f.ebitda, color: '#10b981' },
+        { label: 'إهلاك وزكاة', en: 'D&A+Zakat', val: -(f.da + f.interest + f.zakatAndTax), start: f.ebitda, end: f.netIncome, color: '#f59e0b' },
+        { label: 'صافي الربح', en: 'Net Profit', val: f.netIncome, start: 0, end: f.netIncome, color: '#22c55e' }
+      ];
+
+      const maxVal = Math.max(f.netRev * 1.12, 1000000);
+      const padTop = 26;
+      const padBottom = 30;
+      const padLeft = 18;
+      const padRight = 18;
+      const chartH = h - padTop - padBottom;
+      const chartW = w - padLeft - padRight;
+
+      // Grid lines
+      ctx.strokeStyle = 'rgba(148, 163, 184, 0.1)';
+      ctx.lineWidth = 1;
+      for (let i = 0; i <= 4; i++) {
+        const y = padTop + (chartH * i) / 4;
+        ctx.beginPath();
+        ctx.moveTo(padLeft, y);
+        ctx.lineTo(w - padRight, y);
+        ctx.stroke();
+      }
+
+      const colW = chartW / steps.length;
+      const barW = Math.min(46, colW * 0.58);
+      waterfallBarsBounds = [];
+
+      steps.forEach((s, idx) => {
+        const cx = padLeft + idx * colW + colW / 2;
+        const x = cx - barW / 2;
+        const topVal = Math.max(s.start, s.end);
+        const botVal = Math.min(s.start, s.end);
+        const yTop = padTop + chartH * (1 - topVal / maxVal);
+        const yBot = padTop + chartH * (1 - botVal / maxVal);
+        const barH = Math.max(6, yBot - yTop);
+
+        // Connector line to next bar
+        if (idx < steps.length - 1) {
+          const nextCx = padLeft + (idx + 1) * colW + colW / 2;
+          const connY = padTop + chartH * (1 - s.end / maxVal);
+          ctx.save();
+          ctx.setLineDash([3, 3]);
+          ctx.strokeStyle = 'rgba(203, 213, 225, 0.3)';
+          ctx.beginPath();
+          ctx.moveTo(x + barW, connY);
+          ctx.lineTo(nextCx - barW / 2, connY);
+          ctx.stroke();
+          ctx.restore();
+        }
+
+        // Bar fill
+        ctx.fillStyle = s.color;
+        ctx.beginPath();
+        ctx.roundRect(x, yTop, barW, barH, 5);
+        ctx.fill();
+
+        // Value label above bar
+        ctx.save();
+        ctx.direction = 'ltr';
+        ctx.fillStyle = '#f8fafc';
+        ctx.font = '600 10.5px "JetBrains Mono", monospace';
+        ctx.textAlign = 'center';
+        const mVal = (s.val / 1e6).toFixed(1) + 'M';
+        ctx.fillText((s.val > 0 && s.start === 0 ? '' : (s.val > 0 ? '+' : '')) + mVal, cx, yTop - 6);
+        ctx.restore();
+
+        // Step label below bar
+        ctx.fillStyle = '#cbd5e1';
+        ctx.font = '600 10.5px "IBM Plex Sans Arabic", sans-serif';
+        ctx.fillText(currentLang === 'ar' ? s.label : s.en, cx, h - 10);
+
+        waterfallBarsBounds.push({
+          x, y: yTop, w: barW, h: barH,
+          title: currentLang === 'ar' ? s.label : s.en,
+          val: s.val
+        });
+      });
+    }
+
+    function drawCashFlowChart() {
+      const canvas = document.getElementById('cashflowCanvas');
+      if (!canvas) return;
+      const rect = canvas.parentElement.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      const w = Math.max(320, rect.width - 12);
+      const h = Math.max(190, rect.height - 12);
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      const ctx = canvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+      ctx.clearRect(0, 0, w, h);
+
+      const base = ENTITIES[currentEntity];
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const inflows = base.cashInflows;
+      const outflows = base.cashOutflows;
+      const maxVal = Math.max(...inflows) * 1.18;
+
+      const padTop = 22;
+      const padBottom = 26;
+      const padLeft = 16;
+      const padRight = 16;
+      const chartW = w - padLeft - padRight;
+      const chartH = h - padTop - padBottom;
+
+      // Grid lines
+      ctx.strokeStyle = 'rgba(148, 163, 184, 0.1)';
+      for (let i = 0; i <= 3; i++) {
+        const y = padTop + (chartH * i) / 3;
+        ctx.beginPath();
+        ctx.moveTo(padLeft, y);
+        ctx.lineTo(w - padRight, y);
+        ctx.stroke();
+      }
+
+      const stepW = chartW / months.length;
+      const netPts = [];
+
+      months.forEach((m, i) => {
+        const cx = padLeft + i * stepW + stepW / 2;
+        const bw = Math.min(12, stepW * 0.32);
+
+        // Inflow bar (Emerald)
+        const inH = (inflows[i] / maxVal) * chartH;
+        ctx.fillStyle = 'rgba(16, 185, 129, 0.85)';
+        ctx.beginPath();
+        ctx.roundRect(cx - bw - 1, padTop + chartH - inH, bw, inH, 3);
+        ctx.fill();
+
+        // Outflow bar (Rose)
+        const outH = (outflows[i] / maxVal) * chartH;
+        ctx.fillStyle = 'rgba(244, 63, 94, 0.75)';
+        ctx.beginPath();
+        ctx.roundRect(cx + 1, padTop + chartH - outH, bw, outH, 3);
+        ctx.fill();
+
+        // Month label
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '500 10px "JetBrains Mono", monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(m, cx, h - 8);
+
+        // Cumulative / Net liquidity curve point
+        const netVal = inflows[i] - outflows[i] + 6.5;
+        const ny = padTop + chartH * (1 - netVal / maxVal);
+        netPts.push({ x: cx, y: ny });
+      });
+
+      // Gold Liquidity Trend Line
+      ctx.strokeStyle = '#fde047';
+      ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      netPts.forEach((p, idx) => {
+        if (idx === 0) ctx.moveTo(p.x, p.y);
+        else ctx.lineTo(p.x, p.y);
+      });
+      ctx.stroke();
+
+      netPts.forEach(p => {
+        ctx.fillStyle = '#fde047';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    }
+
+    function drawDonutChart(f) {
+      const canvas = document.getElementById('donutCanvas');
+      if (!canvas) return;
+      const dpr = window.devicePixelRatio || 1;
+      const size = 135;
+      canvas.width = size * dpr;
+      canvas.height = size * dpr;
+      const ctx = canvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+      ctx.clearRect(0, 0, size, size);
+
+      const cx = size / 2;
+      const cy = size / 2;
+      const r = 50;
+      const total = f.totalLiabilities + f.totalEquity;
+      const slices = [
+        { val: f.totalEquity, color: '#10b981' },
+        { val: f.longDebt, color: '#eab308' },
+        { val: f.totalCurrentLiab, color: '#38bdf8' }
+      ];
+
+      let angle = -Math.PI / 2;
+      slices.forEach(s => {
+        const sweep = (s.val / total) * Math.PI * 2;
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, angle, angle + sweep);
+        ctx.strokeStyle = s.color;
+        ctx.lineWidth = 14;
+        ctx.stroke();
+        angle += sweep;
+      });
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '700 12px "JetBrains Mono", monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText(`${Math.round((f.totalEquity / total) * 100)}%`, cx, cy + 2);
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '600 9.5px "IBM Plex Sans Arabic", sans-serif';
+      ctx.fillText('Equity', cx, cy + 15);
+    }
+
+    // Waterfall Tooltip Hover
+    document.getElementById('waterfallCanvas').addEventListener('mousemove', (e) => {
+      const rect = e.target.getBoundingClientRect();
+      const mx = e.clientX - rect.left;
+      const my = e.clientY - rect.top;
+      const tip = document.getElementById('waterfallTooltip');
+      const hit = waterfallBarsBounds.find(b => mx >= b.x && mx <= b.x + b.w && my >= b.y - 10 && my <= b.y + b.h + 10);
+      if (hit) {
+        tip.style.opacity = '1';
+        tip.style.left = `${Math.min(rect.width - 150, Math.max(10, hit.x))}px`;
+        tip.style.top = `${Math.max(8, hit.y - 28)}px`;
+        tip.textContent = `${hit.title}: ${fmtSAR(hit.val)} SAR`;
+      } else {
+        tip.style.opacity = '0';
+      }
+    });
+
+    document.getElementById('waterfallCanvas').addEventListener('mouseleave', () => {
+      document.getElementById('waterfallTooltip').style.opacity = '0';
+    });
+
+    // --- 5. INTERACTIONS: ENTITY SWITCH, TAB SWITCH, WHAT-IF, JOURNAL POSTING ---
+    function switchEntity(entityKey) {
+      currentEntity = entityKey;
+      document.querySelectorAll('.entity-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.entity === entityKey);
+      });
+      renderAll();
+      const ent = ENTITIES[entityKey];
+      showToast(currentLang === 'ar' ? `تم التبديل إلى: ${ent.nameAr}` : `Switched Entity: ${ent.nameEn}`);
+    }
+
+    function switchTab(tabKey) {
+      currentTab = tabKey;
+      document.querySelectorAll('.nav-tab').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.tab === tabKey);
+      });
+      const sections = ['fpa', 'gl', 'ifrs', 'zatca'];
+      sections.forEach(s => {
+        const el = document.getElementById(`sec-${s}`);
+        if (tabKey === 'all' || tabKey === s) {
+          el.classList.add('active');
+        } else {
+          el.classList.remove('active');
+        }
+      });
+      // Redraw canvases after layout visibility settles
+      requestAnimationFrame(() => {
+        const f = computeFinancialState();
+        drawWaterfallChart(f);
+        drawCashFlowChart();
+        drawDonutChart(f);
+      });
+    }
+
+    function updateWhatIf() {
+      const r = parseFloat(document.getElementById('sl-rev').value);
+      const c = parseFloat(document.getElementById('sl-cogs').value);
+      const o = parseFloat(document.getElementById('sl-opex').value);
+      const w = parseFloat(document.getElementById('sl-wacc').value);
+
+      document.getElementById('val-sl-rev').textContent = `${r >= 0 ? '+' : ''}${r.toFixed(1)}%`;
+      document.getElementById('val-sl-cogs').textContent = `${c >= 0 ? '+' : ''}${c.toFixed(1)}%`;
+      document.getElementById('val-sl-opex').textContent = `${o >= 0 ? '+' : ''}${o.toFixed(1)}%`;
+      document.getElementById('val-sl-wacc').textContent = `${w.toFixed(2)}%`;
+
+      renderAll();
+    }
+
+    function resetWhatIf() {
+      document.getElementById('sl-rev').value = 0;
+      document.getElementById('sl-cogs').value = 0;
+      document.getElementById('sl-opex').value = 0;
+      document.getElementById('sl-wacc').value = 8.5;
+      updateWhatIf();
+      showToast(currentLang === 'ar' ? 'تمت إعادة ضبط مؤشرات المحاكاة للوضع الأساسي' : 'Stress-test parameters reset to baseline');
+    }
+
+    function applyPresetJE(type) {
+      const desc = document.getElementById('je-desc');
+      const dr = document.getElementById('je-dr');
+      const cr = document.getElementById('je-cr');
+      const amt = document.getElementById('je-amount');
+      if (type === 'cloud') {
+        desc.value = 'تحصيل عقد استضافة سحابية سيادية';
+        dr.value = '1101';
+        cr.value = '4101';
+        amt.value = 1200000;
+      } else if (type === 'vendor') {
+        desc.value = 'سداد دفعة موردي شبكات ومعدات تشغيلية';
+        dr.value = '2101';
+        cr.value = '1101';
+        amt.value = 450000;
+      } else if (type === 'capex') {
+        desc.value = 'شراء خوادم ومسرعات ذكاء اصطناعي للمركز الرئيسي';
+        dr.value = '1201';
+        cr.value = '1101';
+        amt.value = 850000;
+      }
+    }
+
+    function submitJournalEntry(e) {
+      e.preventDefault();
+      const desc = document.getElementById('je-desc').value.trim();
+      const dr = document.getElementById('je-dr').value;
+      const cr = document.getElementById('je-cr').value;
+      const amount = parseFloat(document.getElementById('je-amount').value);
+
+      if (!desc || isNaN(amount) || amount <= 0) return;
+      if (dr === cr) {
+        showToast(currentLang === 'ar' ? 'خطأ محاسبي: يجب اختلاف الحساب المدين عن الدائن' : 'Accounting Error: Debit and Credit accounts must differ');
+        return;
+      }
+
+      // Apply double-entry effect according to account nature
+      const drSign = ['1101', '1102', '1103', '1201', '5101', '5201', '5301'].includes(dr) ? 1 : -1;
+      const crSign = ['2101', '2102', '2201', '3101', '4101'].includes(cr) ? 1 : -1;
+
+      userLedgerDeltas[dr] = (userLedgerDeltas[dr] || 0) + amount * drSign;
+      userLedgerDeltas[cr] = (userLedgerDeltas[cr] || 0) + amount * crSign;
+
+      const nextNum = 89 + journalEntries.length - 5;
+      journalEntries.unshift({
+        id: `JV-2026-0${nextNum}`,
+        date: '2026-10-16',
+        desc,
+        dr,
+        cr,
+        amount
+      });
+
+      renderAll();
+      showToast(currentLang === 'ar' ? `تم ترحيل القيد بنجاح وتحديث ميزان المراجعة (${fmtSAR(amount)} SAR)` : `Journal Voucher Posted (${fmtSAR(amount)} SAR)`);
+    }
+
+    // --- 6. ZATCA PHASE-2 TLV BASE64 & QR ENGINE ---
+    function encodeTLVTag(tagNum, strValue) {
+      const encoder = new TextEncoder();
+      const bytes = encoder.encode(strValue);
+      const out = new Uint8Array(2 + bytes.length);
+      out[0] = tagNum;
+      out[1] = bytes.length;
+      out.set(bytes, 2);
+      return out;
+    }
+
+    function uint8ToBase64(u8Arr) {
+      let binary = '';
+      for (let i = 0; i < u8Arr.length; i++) {
+        binary += String.fromCharCode(u8Arr[i]);
+      }
+      return btoa(binary);
+    }
+
+    function updateZatcaEngine() {
+      const seller = document.getElementById('zatca-seller').value || 'SovereignCFO Holding';
+      const vatNo = document.getElementById('zatca-vatno').value || '310123456700003';
+      const buyer = document.getElementById('zatca-buyer').value || 'Enterprise Client';
+      const sub = parseFloat(document.getElementById('zatca-subtotal').value) || 0;
+      const vat = sub * 0.15;
+      const total = sub + vat;
+      const timestamp = '2026-10-16T11:30:00Z';
+
+      document.getElementById('zatca-vat-display').value = `${fmtSAR(vat)} SAR (15%)`;
+      document.getElementById('zatca-total-display').value = `${fmtSAR(total)} SAR`;
+
+      const t1 = encodeTLVTag(1, seller);
+      const t2 = encodeTLVTag(2, vatNo);
+      const t3 = encodeTLVTag(3, timestamp);
+      const t4 = encodeTLVTag(4, total.toFixed(2));
+      const t5 = encodeTLVTag(5, vat.toFixed(2));
+
+      const totalLen = t1.length + t2.length + t3.length + t4.length + t5.length;
+      const combined = new Uint8Array(totalLen);
+      let offset = 0;
+      [t1, t2, t3, t4, t5].forEach(arr => {
+        combined.set(arr, offset);
+        offset += arr.length;
+      });
+
+      const b64 = uint8ToBase64(combined);
+      document.getElementById('zatcaBase64Box').textContent = b64;
+
+      // Deterministic cryptographic hash preview
+      let hashAcc = 0x811c9dc5;
+      for (let i = 0; i < b64.length; i++) {
+        hashAcc ^= b64.charCodeAt(i);
+        hashAcc = Math.imul(hashAcc, 0x01000193) >>> 0;
+      }
+      const hexStamp = `SHA256-STAMP: ${hashAcc.toString(16).padStart(8, '0')}e94b71c2a08f3d5519b4c802`;
+      document.getElementById('zatcaHashBox').textContent = hexStamp;
+
+      // Render TLV Tag Chips
+      const tagsInfo = [
+        { tag: 'Tag 01 (Seller)', val: seller.slice(0, 18) },
+        { tag: 'Tag 02 (VAT ID)', val: vatNo },
+        { tag: 'Tag 03 (ISO Time)', val: timestamp },
+        { tag: 'Tag 04 (Total SAR)', val: total.toFixed(2) },
+        { tag: 'Tag 05 (VAT 15%)', val: vat.toFixed(2) }
+      ];
+      document.getElementById('tlvTagGrid').innerHTML = tagsInfo.map(t => `
+        <div class="tlv-tag-chip">
+          <strong>${t.tag}</strong>
+          <span style="color:var(--text-secondary);">${t.val}</span>
+        </div>
+      `).join('');
+
+      drawZatcaQR(b64);
+
+      // Update modal fields
+      document.getElementById('inv-modal-seller').textContent = seller;
+      document.getElementById('inv-modal-vatno').textContent = `VAT Reg: ${vatNo}`;
+      document.getElementById('inv-modal-buyer').textContent = buyer;
+      document.getElementById('inv-modal-time').textContent = timestamp;
+      document.getElementById('inv-modal-sub').textContent = `${fmtSAR(sub)} SAR`;
+      document.getElementById('inv-modal-vat').textContent = `${fmtSAR(vat)} SAR`;
+      document.getElementById('inv-modal-tot').textContent = `${fmtSAR(total)} SAR`;
+    }
+
+    function drawZatcaQR(seedStr) {
+      const canvas = document.getElementById('zatcaQrCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const size = 120;
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, size, size);
+
+      const cells = 21;
+      const cellSize = Math.floor(size / cells);
+      const offset = Math.floor((size - cells * cellSize) / 2);
+
+      function drawFinder(r0, c0) {
+        ctx.fillStyle = '#060a12';
+        ctx.fillRect(offset + c0 * cellSize, offset + r0 * cellSize, 7 * cellSize, 7 * cellSize);
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(offset + (c0 + 1) * cellSize, offset + (r0 + 1) * cellSize, 5 * cellSize, 5 * cellSize);
+        ctx.fillStyle = '#060a12';
+        ctx.fillRect(offset + (c0 + 2) * cellSize, offset + (r0 + 2) * cellSize, 3 * cellSize, 3 * cellSize);
+      }
+
+      drawFinder(0, 0);
+      drawFinder(0, cells - 7);
+      drawFinder(cells - 7, 0);
+
+      ctx.fillStyle = '#060a12';
+      for (let r = 0; r < cells; r++) {
+        for (let c = 0; c < cells; c++) {
+          const inTL = r < 8 && c < 8;
+          const inTR = r < 8 && c >= cells - 8;
+          const inBL = r >= cells - 8 && c < 8;
+          if (inTL || inTR || inBL) continue;
+          const code = seedStr.charCodeAt((r * cells + c) % seedStr.length);
+          if (((code + r * 7 + c * 13) & 3) !== 0) {
+            ctx.fillRect(offset + c * cellSize, offset + r * cellSize, cellSize, cellSize);
+          }
+        }
+      }
+    }
+
+    function openInvoiceModal() {
+      updateZatcaEngine();
+      document.getElementById('invoiceModal').classList.add('open');
+    }
+
+    function closeInvoiceModal() {
+      document.getElementById('invoiceModal').classList.remove('open');
+    }
+
+    // --- 7. CSV EXPORT & BILINGUAL TOGGLE ---
+    function exportFinancialCSV() {
+      const f = computeFinancialState();
+      const lines = [
+        'Line Item,Amount (SAR)',
+        `Net Consolidated Revenue,${Math.round(f.netRev)}`,
+        `Cost of Revenue (COGS),${Math.round(f.cogs)}`,
+        `Gross Profit,${Math.round(f.grossProfit)}`,
+        `Operating Expenses (OPEX),${Math.round(f.opex)}`,
+        `EBITDA,${Math.round(f.ebitda)}`,
+        `Net Profit (After Zakat),${Math.round(f.netIncome)}`,
+        `Total Consolidated Assets,${Math.round(f.totalAssets)}`,
+        `Total Liabilities,${Math.round(f.totalLiabilities)}`,
+        `Total Shareholders Equity,${Math.round(f.totalEquity)}`
+      ];
+      const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `SovereignCFO_${currentEntity}_FY2026.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast(currentLang === 'ar' ? 'تم تصدير التقرير المالي الموحد بصيغة CSV' : 'Exported Consolidated Financial Report (CSV)');
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'ar' ? 'en' : 'ar';
+      const html = document.documentElement;
+      html.lang = currentLang;
+      html.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+
+      const isAr = currentLang === 'ar';
+      document.getElementById('btn-lang-toggle').textContent = isAr ? '🌐 English' : '🌐 العربية';
+      document.getElementById('ui-brand-sub').textContent = isAr
+        ? 'المنصة المؤسسية للإدارة المالية والمحاسبية والفوترة الإلكترونية (ZATCA Phase-2)'
+        : 'Institutional Corporate Finance, IFRS Consolidation & ZATCA Phase-2 Suite';
+
+      document.getElementById('ent-label-consolidated').textContent = isAr ? 'المجموعة القابضة الموحدة' : 'Consolidated Group';
+      document.getElementById('ent-label-cloud').textContent = isAr ? 'السعودية للسحابة والذكاء' : 'KSA Cloud & AI';
+      document.getElementById('ent-label-logistics').textContent = isAr ? 'الخليج اللوجستية والأسطول' : 'Gulf Logistics';
+      document.getElementById('ent-label-fintech').textContent = isAr ? 'بوابة المدفوعات الرقمية' : 'FinTech Gateway';
+
+      document.getElementById('tab-label-fpa').textContent = isAr ? 'لوحة القيادة والربحية (FP&A)' : 'FP&A Executive Command';
+      document.getElementById('tab-label-gl').textContent = isAr ? 'الأستاذ العام وميزان المراجعة' : 'General Ledger & Trial Balance';
+      document.getElementById('tab-label-ifrs').textContent = isAr ? 'القوائم المالية الموحدة (IFRS)' : 'IFRS Financial Statements';
+      document.getElementById('tab-label-zatca').textContent = isAr ? 'الفوترة الإلكترونية (ZATCA)' : 'ZATCA Phase-2 E-Invoicing';
+      document.getElementById('tab-label-all').textContent = isAr ? 'العرض التنفيذي الشامل' : 'All-in-One Executive View';
+
+      document.getElementById('btn-new-je').textContent = isAr ? 'قيد يومية فوري' : 'Quick Journal Entry';
+      document.getElementById('btn-export-csv').textContent = isAr ? 'تصدير CSV' : 'Export CSV';
+
+      renderAll();
+    }
+
+    window.addEventListener('resize', () => {
+      const f = computeFinancialState();
+      drawWaterfallChart(f);
+      drawCashFlowChart();
+      drawDonutChart(f);
+    });
+
+    // Initial boot
+    window.addEventListener('DOMContentLoaded', () => {
+      renderAll();
+      updateZatcaEngine();
+    });
+  </script>
+</body>
+</html>
